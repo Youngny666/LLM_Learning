@@ -26,15 +26,25 @@ Transformer由多层的 **多头自注意力（Multi-head Self-attention）** �
 ### 1.2 归一化
 #### 1.2.1 归一化方法
 - **LN（LayerNorm）** 
+
     $$
     \begin{aligned}
     \mathrm{LayerNorm}(x) & =\frac{x-\mu}{\sigma}\cdot\gamma+\beta, \\
     \mu & =\frac{1}{H}\sum_{i=1}^{H}x_{i},\quad\sigma=\sqrt{\frac{1}{H}\sum_{i=1}^{H}(x_{i}-\mu))^{2}}.
     \end{aligned}
     $$
+    
 - **BN（BatchNorm）** 
 - **RMSNorm** 提高层归一化的训练速度
+
     $$
     \mathrm{RMSNorm}(x)=\frac{x}{\mathrm{RMS}(x)}\cdot\gamma,\mathrm{RMS}(x)=\sqrt{\frac{1}{H}\sum_{i=1}^{H}x_{i}^{2}}.
     $$
+
     代码见[RMSNorm.ipynb](./codes/RMSNorm.ipynb)
+- **DeepNorm** 
+
+    $$
+    \mathrm{DeepNorm}(\mathbf{x})=\mathrm{LayerNorm}(\alpha\cdot\mathbf{x}+\mathrm{Sublayer}(\mathbf{x}))
+    $$
+
